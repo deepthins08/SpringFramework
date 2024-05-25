@@ -1,8 +1,11 @@
 package com.xworkz.springwebapp.configuration;
 
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class SpringWebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class SpringWebInit extends AbstractAnnotationConfigDispatcherServletInitializer
+        implements WebMvcConfigurer {
 
     public SpringWebInit(){
         System.out.println("Created SpringWebInit");
@@ -19,6 +22,12 @@ public class SpringWebInit extends AbstractAnnotationConfigDispatcherServletInit
 
     @Override
     protected String[] getServletMappings() {
-        return new String[]{"/send"};
+        return new String[]{"/"};
+    }
+
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+//        WebMvcConfigurer.super.configureDefaultServletHandling(configurer);
+        configurer.enable();
     }
 }
